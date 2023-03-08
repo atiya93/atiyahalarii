@@ -982,7 +982,7 @@ section {
       display: inline-block;
       margin: 1.25rem 0;
       position: relative; }
-      #contact form .send a {
+      #contact form .send button {
         padding: .625rem 1.125rem;
         background: #E31C25;
         color: #fff;
