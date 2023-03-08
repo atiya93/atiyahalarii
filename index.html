@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="assets/css/plugins/owl.carousel.min.css">
         <link rel="stylesheet" href="assets/font/flaticon.css">
         <link rel="stylesheet" href="assets/css/style.css">
+         <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
     </head>
     <!-- =================Body Started==================== -->
     <body>
@@ -450,7 +451,7 @@
                 </div>
             </section>
             <!-- =================================********================================= -->
-            <section id="contact">
+           <section id="contact">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -465,27 +466,26 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <input class="form-control" name="121" id="inputName" type="text" required="name" placeholder="Enter Your Name">
+                                            <input id="inputName" class="form-control" name="from_name" type="text" required="name" placeholder="Enter Your Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <input class="form-control" name="122" id="inputEmail" type="text" required="email" placeholder="Enter Your Email">
+                                            <input id="inputEmail" class="form-control" name="email_id" type="text" required="email" placeholder="Enter Your Email">
                                         </div>
                                     </div>
-<!--                                     <div class="col-12">
-                                        <div class="form-group">
-                                            <input class="form-control" name="123" type="text" required="subject" placeholder="Subject (optinal)">
-                                        </div>
-                                    </div> -->
+                                    <div class="col-12">
+
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea class="" cals="40" rows="10" id= "inputMessage" name="124" type="text" placeholder="Message"></textarea>
+                                            <textarea id="inputMessage" class="" cals="40" rows="10" name="message" type="text" placeholder="Message"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="send">
-                                            <a href="#" >Send</a>
+                                            <button type="submit">Send</button>
+<!--                                            <a href="#">Send</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -497,35 +497,35 @@
                     </div>
                 </div>
             </section>
+        <script>
+            window.emailjs.init("3xRvodtIAb2doFZyL");
+            document.getElementById('my-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+                sendEmail(); // Call the sendEmail function when the submit button is clicked
+            });
+            function sendEmail() {
+                // Get the values from the form
+                var name = document.getElementById('my-form').elements.namedItem("from_name").value;
+                var email = document.getElementById('my-form').elements.namedItem("email_id").value;
+                var message = document.getElementById('my-form').elements.namedItem("message").value;
+                // Send the email using the EmailJS SDK
+                emailjs.send("service_z198rjn", "template_yg33rab", {
+                    "from_name": name,
+                    "email_id": email,
+                    "message": message
+                })
+                    .then(function(response) {
+                        alert("Email sent!");
+                    }, function(error) {
+                        alert("Error sending email: " + error);
+                    });
+            }
+        </script>
             <!-- =================================********================================= -->
 
         <!-- =================================********================================= -->
-      <script>
-    window.emailjs.init("3xRvodtIAb2doFZyL");
-    document.getElementById('my-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting
-        sendEmail(); // Call the sendEmail function when the submit button is clicked
-    });
-    function sendEmail() {
-        // Get the values from the form
-        var name = document.getElementById('my-form').elements.namedItem("from_name").value;
-        var email = document.getElementById('my-form').elements.namedItem("email_id").value;
-        var message = document.getElementById('my-form').elements.namedItem("message").value;
-        // Send the email using the EmailJS SDK
-        emailjs.send("service_z198rjn", "template_yg33rab", {
-            "from_name": name,
-            "from_email": email,
-            "message_html": message
-        })
-            .then(function(response) {
-                alert("Email sent!");
-            }, function(error) {
-                alert("Error sending email: " + error);
-            });
-    }
-</script>
-                        
-         <script src="assets/js/jquery-3.2.1.min.js"></script>
+      
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/script.js"></script>
 
